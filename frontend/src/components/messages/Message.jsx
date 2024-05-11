@@ -1,16 +1,20 @@
-const Message = () => {
+import { useAuthContext } from "../../../context/AuthContext";
+import { extractTime } from "../../utils/extractTime";
+
+const Message = ({ message }) => {
+  const { authUser } = useAuthContext();
+  const sentByMe = message.senderID === authUser._id;
+  const align = sentByMe ? "chat-end" : "chat-start";
+  const bgcolor = sentByMe ? "bg-cust_green_dark" : "";
+
+  const formattedTime = extractTime(message.createdAt);
   return (
     <>
-      <div className="chat chat-end">
-        <div className="chat-bubble rounded-xl">You were the Chosen One!</div>
-        <div className="chat-footer text-xs opacity-50">2 hours ago</div>
-      </div>
-      <div className="chat chat-start">
-        {/* <div className="chat-header">
-          <time className="text-xs opacity-50">2 hour ago</time>
-        </div> */}
-        <div className="chat-bubble rounded-xl">I loved you.</div>
-        <div className="chat-footer text-xs opacity-50">Delivered</div>
+      <div className={`chat ${align}`}>
+        <div className={`chat-bubble rounded-xl text-white ${bgcolor}`}>
+          {message.message}
+        </div>
+        <div className="chat-footer text-xs opacity-50">{formattedTime}</div>
       </div>
     </>
   );
