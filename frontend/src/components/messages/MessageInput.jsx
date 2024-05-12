@@ -27,6 +27,7 @@ const MessageInput = () => {
         <button
           type="submit"
           className="absolute inset-y-0 end-0 flex items-center pe-3 text-cust_green_light"
+          disabled={loading}
         >
           {loading ? (
             <span className="spinner loading-spinner"></span>
