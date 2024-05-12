@@ -6,7 +6,7 @@ import Message from "./Message";
 const Messages = () => {
   const { loading, messages } = useGetMessages();
   useListenMessages();
-  console.log(messages);
+  // console.log(messages);
   return (
     <div className="px-4 flex-1 flex  flex-col-reverse overflow-auto">
       <div>
