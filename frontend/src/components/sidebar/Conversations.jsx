@@ -1,12 +1,15 @@
 import useGetConversations from "../../hooks/useGetConversations";
 import Conversation from "./Conversation";
 
-const Conversations = () => {
+const Conversations = ({ search }) => {
   const { loading, conversations } = useGetConversations();
   console.log("conversations", conversations);
+  const filteredConversations = conversations.filter((conversation) =>
+    conversation.fullName.toLowerCase().includes(search.toLowerCase())
+  );
   return (
     <div className="py-2 flex flex-col overflow-auto">
-      {conversations.map((conversation, idx) => (
+      {filteredConversations.map((conversation, idx) => (
         <Conversation
           key={conversation._id}
           conversation={conversation}
