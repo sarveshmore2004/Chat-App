@@ -1,7 +1,7 @@
 import { useSocketContext } from "../../../context/SocketContext";
+import { sideBarDateTime } from "../../utils/extractTime";
 import useConversation from "../../zustand/useConversation";
-
-const Conversation = ({ conversation, lastIdx }) => {
+const Conversation = ({ conversation, lastIdx ,lastMessage }) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const isSelected = selectedConversation?._id === conversation._id;
 
@@ -24,9 +24,16 @@ const Conversation = ({ conversation, lastIdx }) => {
         </div>
 
         <div className="flex flex-col flex-1">
-          <div className="flex gap-3 justify-between">
-            <p className="font-bold text-gray-200">{conversation.fullName}</p>
-            <span className="text-xl">🎃</span>
+          <div className="flex gap-3 justify-between ">
+            <div className="flex flex-col justify-between">
+              <p className="font-bold text-cust_green_light">{conversation.fullName}</p>
+              <p className={`text-sm text-gray-300`}>
+                {!lastMessage  ? "click to start conversation..." : lastMessage.message}
+              </p>
+            </div>
+            <p className={`text-sm text-gray-300`}>
+              {!lastMessage  ? "" : sideBarDateTime(lastMessage.createdAt)}
+            </p>
           </div>
         </div>
       </div>

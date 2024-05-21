@@ -3,7 +3,7 @@ import Conversations from "./Conversations";
 import LogoutButton from "./LogoutButton";
 import SearchInput from "./SearchInput";
 
-const Sidebar = () => {
+const Sidebar = ({conversations,loading,messages}) => {
   const [search, setSearch] = useState("");
 
   const handleChange = (e) => setSearch(e.target.value);
@@ -11,7 +11,7 @@ const Sidebar = () => {
     <div className="flex flex-col bg-cust_dark min-w-64 flex-1 max-w-96 border-r-2 border-cust_green_dark/20">
       <SearchInput search={search} handleChange={handleChange} />
       <div className="divider px-1 m-1"></div>
-      <Conversations search={search} />
+      <Conversations search={search} conversations={conversations} loading={loading} messages={messages} />
       <LogoutButton />
     </div>
   );

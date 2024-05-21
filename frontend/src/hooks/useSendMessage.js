@@ -19,7 +19,27 @@ const useSendMessage = () => {
       if (data.error) {
         throw new Error(data.error);
       }
-      setMessages([...messages, data]);
+      const receiverID = selectedConversation._id;
+      let updatedMessages ={};
+      if(!messages[receiverID]){
+        updatedMessages = {
+          ...messages,
+          [receiverID]: [data],
+        };
+      }
+      else{
+        const arr = messages[receiverID]
+        const newMessages = [...arr , data]
+        updatedMessages = {
+          ...messages,
+          [receiverID]: newMessages,
+        };
+      }
+
+      setMessages(updatedMessages);
+      console.log("updated messages",updatedMessages);
+
+      // setMessages([...messages, data]);
     } catch (error) {
       toast.error(error.message);
     } finally {

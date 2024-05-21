@@ -1,14 +1,16 @@
 export function extractTime(dateString) {
   const date = new Date(dateString);
-  const hours = padZero(date.getHours());
-  const minutes = padZero(date.getMinutes());
-  return `${hours}:${minutes}`;
+  const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+  const timeString = date.toLocaleTimeString('en-US', options);
+
+  // const hours = padZero(date.getHours());
+  // const minutes = padZero(date.getMinutes());
+  return `${timeString}`;
 }
 
-// Helper function to pad single-digit numbers with a leading zero
-function padZero(number) {
-  return number.toString().padStart(2, "0");
-}
+// function padZero(number) {
+//   return number.toString().padStart(2, "0");
+// }
 
 
 const formatLastSeen = (dateString) => {
@@ -30,6 +32,34 @@ const formatLastSeen = (dateString) => {
     return `Last seen on ${dateStringFormatted}`;
   }
 };
+
+
+export const sideBarDateTime = (dateString) => {
+  const date = new Date(dateString);
+  const now = new Date();
+
+  const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+
+  const diffInDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+
+  const timeString = date.toLocaleTimeString('en-US', options);
+
+  // Format date as DD-MM-YY
+  const padToTwoDigits = (num) => num.toString().padStart(2, '0');
+  const day = padToTwoDigits(date.getDate());
+  const month = padToTwoDigits(date.getMonth() + 1);
+  const year = date.getFullYear().toString().slice(-2);
+  const formattedDate = `${day}-${month}-${year}`;
+
+  if (diffInDays === 0) {
+    return `${timeString}`;
+  } else if (diffInDays === 1) {
+    return `Yesterday`;
+  } else {
+    return `${formattedDate}`;
+  }
+};
+
 
 export default formatLastSeen;
 
