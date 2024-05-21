@@ -25,7 +25,7 @@ app.use("/api/users", userRoutes);
 //     res.send('HELLOOO WORLLLD');
 // })
 
-server.listen(PORT, () => {
-  connectToMongoDB();
+server.listen(PORT, async () => {
+  await connectToMongoDB();
   console.log(`listening on port ${PORT}`);
 });

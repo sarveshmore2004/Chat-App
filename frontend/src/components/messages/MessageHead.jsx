@@ -1,8 +1,13 @@
 import { useSocketContext } from "../../../context/SocketContext";
+import formatLastSeen from "../../utils/extractTime";
 
 const MessageHead = ({ conversation }) => {
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(conversation._id);
+  const { lastSeen } = useSocketContext();
+  let lastseenAt = lastSeen[conversation._id];
+  lastseenAt = formatLastSeen(lastseenAt);
+  // console.log(lastseenAt)
 
   return (
     <div className="bg-cust_dark p-2 mb-2 pt-3 flex items-center min-h-16 border-b-2 border-cust_green_dark/20">
@@ -14,9 +19,14 @@ const MessageHead = ({ conversation }) => {
 
       <div className="flex flex-col flex-1">
         <div className="flex gap-3 justify-between">
-          <p className="font-semibold  text-cust_green_light ml-3">
-            {conversation.fullName}
-          </p>
+          <div className="flex flex-col ml-3 justify-between">
+            <p className="font-semibold  text-cust_green_light ">
+              {conversation.fullName}
+            </p>
+            <p className={`text-sm font-extralight  opacity-80 ${isOnline ? "text-cust_green_light" : " text-gray-300"}`}>
+              {isOnline? "online" : lastseenAt}
+            </p>
+          </div>
           <span className="text-xl">🎃</span>
         </div>
       </div>
