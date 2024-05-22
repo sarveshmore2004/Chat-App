@@ -12,6 +12,7 @@ const Sidebar = ({conversations,loading,messages}) => {
   const [openProfile , setOpenProfile] = useState(false);
   const handleProfile = ()=> setOpenProfile((prev)=>!prev)
   const handleChange = (e) => setSearch(e.target.value);
+  
   return (
     <div className="flex flex-col bg-cust_dark min-w-64 flex-1 max-w-96 border-r-2 border-cust_green_dark/20">
       {openProfile && <Profile handleProfile={handleProfile} />}
