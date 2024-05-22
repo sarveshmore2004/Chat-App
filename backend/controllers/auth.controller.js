@@ -40,6 +40,9 @@ export const signup = async (req,res)=>{
                 fullName: newUser.fullName,
                 username: newUser.username,
                 profilePic: newUser.profilePic,
+                status: newUser.status,
+                lastSeen: newUser.lastSeen,
+                gender: newUser.gender
             })
         }
         else{
@@ -71,6 +74,9 @@ export const login = async (req,res)=>{
             fullName: user.fullName,
             username: user.username,
             profilePic: user.profilePic,
+            status: user.status,
+            lastSeen: user.lastSeen,
+            gender: user.gender
         });
 
     } catch (error) {

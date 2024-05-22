@@ -1,5 +1,6 @@
 import { useSocketContext } from "../../../context/SocketContext";
 import formatLastSeen from "../../utils/extractTime";
+import Profilepop from "./Profilepop";
 
 const MessageHead = ({ conversation }) => {
   const { onlineUsers } = useSocketContext();
@@ -11,9 +12,12 @@ const MessageHead = ({ conversation }) => {
 
   return (
     <div className="bg-cust_dark p-2 mb-2 pt-3 flex items-center min-h-16 border-b-2 border-cust_green_dark/20">
-      <div className={`avatar  ${isOnline ? "online" : ""}`}>
-        <div className="w-12 p-1 rounded-full">
+      <div className={`avatar  ${isOnline ? "online" : ""} dropdown dropdown-hover`}>
+        <div tabIndex={0} role="button" className="w-12 p-1 rounded-full">
           <img src={conversation.profilePic} alt="user avatar" />
+        </div>
+        <div tabIndex={0}  className="card lg:card-side dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box overflow-scroll">
+          <Profilepop conversation={conversation}/>
         </div>
       </div>
 

@@ -4,6 +4,7 @@ import LogoutButton from "./LogoutButton";
 import SearchInput from "./SearchInput";
 import { useAuthContext } from "../../../context/AuthContext";
 import Profile from "./Profile";
+import { IoSettingsOutline } from "react-icons/io5";
 
 const Sidebar = ({conversations,loading,messages}) => {
   const [search, setSearch] = useState("");
@@ -16,9 +17,10 @@ const Sidebar = ({conversations,loading,messages}) => {
       {openProfile && <Profile handleProfile={handleProfile} />}
       {!openProfile && (<><div className="  flex justify-between px-4 pt-2 items-center">
         <p className="font-bold text-2xl text-cust_green_light/80">ChatApp</p>
-        <div className="dropdown dropdown-hover">
-          <div tabIndex={0} role="button" className=" avatar w-12 p-1 ml-1 rounded-full cursor-pointer" >
-            <img src={authUser.profilePic} alt="user avatar" />
+        <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
+          <div tabIndex={0} role="button" className="  cursor-pointer" >
+            {/* <img src={authUser.profilePic} alt="user avatar" /> */}
+            <IoSettingsOutline className=" text-cust_green_light/80" size={23}/>
           </div>
           <LogoutButton handleProfile={handleProfile}/>
         </div>

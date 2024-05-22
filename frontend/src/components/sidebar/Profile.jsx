@@ -13,9 +13,9 @@ const Profile = ({handleProfile}) => {
         </div>
         <div className="space-y-2">
           <div className="flex justify-center items-center flex-col space-y-3 text-lg font-medium leading-6">
-            <h3 className="text-white">{authUser.fullName}</h3>
-            <p className="text-indigo-300">status</p>
-            <p className="text-indigo-300">{authUser.gender}</p>
+            <h3 className="text-cust_green_light">{authUser.fullName}</h3>
+            <p className="text-gray-100">{authUser.gender}</p>
+            <p className="text-gray-100">{authUser.status}</p>
             <div className="flex justify-center mt-5 space-x-5">
               {/* Additional user info or actions can be added here */}
             </div>
