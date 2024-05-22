@@ -1,3 +1,4 @@
+import { BsCheck2All } from "react-icons/bs";
 import { useSocketContext } from "../../../context/SocketContext";
 import { sideBarDateTime } from "../../utils/extractTime";
 import useConversation from "../../zustand/useConversation";
@@ -27,8 +28,9 @@ const Conversation = ({ conversation, lastIdx ,lastMessage }) => {
           <div className="flex gap-3 justify-between ">
             <div className="flex flex-col justify-between">
               <p className="font-bold text-cust_green_light">{conversation.fullName}</p>
-              <p className={`text-sm text-gray-300`}>
-                {!lastMessage  ? "click to start conversation..." : lastMessage.message}
+              <p className={`text-sm text-gray-300 flex items-end gap-1`}>
+                {lastMessage &&  lastMessage.receiverID === conversation._id && <BsCheck2All size={16}/> }
+                {!lastMessage  ? "click to start conversation..." : lastMessage.receiverID === conversation._id ? `${lastMessage.message}` : lastMessage.message}
               </p>
             </div>
             <p className={`text-sm text-gray-300`}>
