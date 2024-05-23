@@ -7,9 +7,9 @@ import useConversation from "../../zustand/useConversation";
 import { useEffect } from "react";
 import { useAuthContext } from "../../../context/AuthContext";
 
-const MessageContainer = ({loading, messages}) => {
+const MessageContainer = ({loading}) => {
   const { authUser } = useAuthContext();
-  const { selectedConversation, setSelectedConversation } = useConversation();
+  const { messages,selectedConversation, setSelectedConversation } = useConversation();
   useEffect(() => {
     return () => setSelectedConversation(null);
   }, [setSelectedConversation]);

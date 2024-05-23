@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 // import useGetConversations from "../../hooks/useGetConversations";
 import Conversation from "./Conversation";
+import useConversation from "../../zustand/useConversation";
 
-const Conversations = ({ search , conversations , loading , messages}) => {
+const Conversations = ({ search  , loading , messages}) => {
   // const { loading, conversations } = useGetConversations();
   // console.log("conversations", conversations);
   // console.log("last seeenssss", lastSeen);
+
+  const {conversations} = useConversation();
   useEffect(() => {
     console.log("Conversations component rendered");
     console.log("conversations", conversations);

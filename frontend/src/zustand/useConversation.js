@@ -6,6 +6,8 @@ const useConversation = create((set) => ({
     set({ selectedConversation }),
   messages: {},
   setMessages: (messages) => set({ messages }),
+  conversations: [],
+  setConversations: (conversations) => set({ conversations }),
   // setMessages: (userId, newMessages) =>
   //   set((state) => ({
   //     messages: {

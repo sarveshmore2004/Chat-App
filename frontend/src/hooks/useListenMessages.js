@@ -8,6 +8,7 @@ const useListenMessages = () => {
   // const { selectedConversation } = useConversation();
 
   useEffect(() => {
+    console.log("listenning")
     const handleNewMessage = (newMessage) => {
       const { senderID } = newMessage;
       let updatedMessages ={};
@@ -28,6 +29,8 @@ const useListenMessages = () => {
       // Update messages by adding the new message to the correct user's array
 
       // Set the updated messages
+
+      // CAN USE Prev => here
       setMessages(updatedMessages);
       console.log("updated messages",updatedMessages);
     };

@@ -48,22 +48,23 @@ export const SocketContextProvider = ({ children }) => {
   }, [authUser]);
 
   // useEffect(() => {
-  //   console.log("useffect working?",conversations);
-
-  //   // if (conversations && conversations.length > 0) {
-  //     const lastSeenMap = {};
-  //     conversations.forEach(user => {
-  //       lastSeenMap[user._id] = user.lastSeen;
-  //     });
-  //     setLastSeen(lastSeenMap);
-  //     console.log("first time seen data",lastSeen);
-
-  //   // }
-  // }, [conversations]); 
-
-  return (
-    <SocketContext.Provider value={{ socket, onlineUsers, lastSeen , setLastSeen }}>
+    
+    return (
+      <SocketContext.Provider value={{ socket, onlineUsers, lastSeen , setLastSeen }}>
       {children}
     </SocketContext.Provider>
   );
 };
+
+//   console.log("useffect working?",conversations);
+
+//   // if (conversations && conversations.length > 0) {
+//     const lastSeenMap = {};
+//     conversations.forEach(user => {
+//       lastSeenMap[user._id] = user.lastSeen;
+//     });
+//     setLastSeen(lastSeenMap);
+//     console.log("first time seen data",lastSeen);
+
+//   // }
+// }, [conversations]); 

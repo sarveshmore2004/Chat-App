@@ -5,13 +5,15 @@ import SearchInput from "./SearchInput";
 import { useAuthContext } from "../../../context/AuthContext";
 import Profile from "./Profile";
 import { IoSettingsOutline } from "react-icons/io5";
+import useConversation from "../../zustand/useConversation";
 
-const Sidebar = ({conversations,loading,messages}) => {
+const Sidebar = ({loading}) => {
   const [search, setSearch] = useState("");
   const {authUser} = useAuthContext();
   const [openProfile , setOpenProfile] = useState(false);
   const handleProfile = ()=> setOpenProfile((prev)=>!prev)
   const handleChange = (e) => setSearch(e.target.value);
+  const {messages} = useConversation();
   
   return (
     <div className="flex flex-col bg-cust_dark min-w-64 flex-1 max-w-96 border-r-2 border-cust_green_dark/20">
@@ -30,7 +32,7 @@ const Sidebar = ({conversations,loading,messages}) => {
         <SearchInput search={search} handleChange={handleChange} />
       </div>
       <div className="divider px-1 m-1"></div>
-      <Conversations search={search} conversations={conversations} loading={loading} messages={messages} /></>)}
+      <Conversations search={search} loading={loading} messages={messages} /></>)}
     </div>
   );
 };

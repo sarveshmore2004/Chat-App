@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const useGetMessages = (conversations) => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages } = useConversation();
-
+  const [fetched , setFetched] = useState(false);
   useEffect(() => {
     const getMessages = async () => {
       setLoading(true);
@@ -30,8 +30,9 @@ const useGetMessages = (conversations) => {
       }
     };
 
-    if (conversations && conversations.length > 0) {
+    if (!fetched && conversations && conversations.length > 0) {
       getMessages();
+      setFetched(true);
     }
   }, [conversations, setMessages]);
 
