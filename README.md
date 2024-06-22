@@ -45,24 +45,38 @@ This chat application provides real-time messaging capabilities, user authentica
 
 To get a local copy up and running, follow these steps:
 
+```bash
+git clone git@github.com:sarveshmore2004/ZCoder.git
+cd ZCoder
+npm install
+```
 
-### Setup .env file
 
+Frontend Setup
+- Navigate to the frontend directory.
+```bash
+cd frontend
+npm install
+```
+- Start the frontend development server.
+```bash
+npm run dev
+```
+
+Backend Setup
+- Navigate to the Project root directory.
+```bash
+cd ..
+```
+- Create a .env file and add the following environment variables:
 ```js
 PORT=...
 MONGO_DB_URI=...
 JWT_SECRET=...
 NODE_ENV=...
 ```
-
-### Build the app
-
-```shell
-npm run build
+- Start the backend server.
+```bash
+npm start server
 ```
 
-### Start the app
-
-```shell
-npm start
-```
