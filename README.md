@@ -46,7 +46,7 @@ This chat application provides real-time messaging capabilities, user authentica
 To get a local copy up and running, follow these steps:
 
 ```bash
-git clone git@github.com:sarveshmore2004/ZCoder.git
+git clone git@github.com:sarveshmore2004/Chat-App.git
 cd ZCoder
 npm install
 ```
