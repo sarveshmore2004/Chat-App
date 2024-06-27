@@ -1,40 +1,40 @@
 import User from "../models/user.model.js";
+import { io } from "../socket/socket.js";
+export const getUsersForSidebar = async (req, res) => {
+  try {
+    const loggedInUserID = req.user._id;
 
-export const getUsersForSidebar = async (req,res)=>{
-    try {
+    const filteredUsers = await User.find({
+      _id: { $ne: loggedInUserID },
+    }).select("-password");
 
-        const loggedInUserID = req.user._id
+    res.status(200).json(filteredUsers);
+  } catch (error) {
+    console.log("Error in getUsersForSidebar controller", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
-        const filteredUsers = await User.find({_id:{$ne : loggedInUserID}}).select("-password")
+export const updateUserProfile = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const { fullName, gender, status } = req.body;
 
-        res.status(200).json(filteredUsers)
-        
-    } catch (error) {
-        console.log("Error in getUsersForSidebar controller ",error.message);
-        res.status(500).json({error:"Internal Server Error"})
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { fullName, gender, status },
+      { new: true, runValidators: true }
+    ).select("-password");
+
+    
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
     }
-}
-
-
-export const getMessages = async (req,res)=>{
-    try {
-        const {id:receiverID} = req.params
-        const senderID = req.user._id
-
-        const conversation = await Conversation.findOne({
-            participants:{$all:[senderID , receiverID]}
-        }).populate("messages")
-
-        if(!conversation){
-            return res.status(200).json([])
-        }
-
-        const messages = conversation.messages
-
-        res.status(200).json(messages)
-        
-    } catch (error) {
-        console.log("Error in getMessages controller ",error.message);
-        res.status(500).json({error:"Internal Server Error"})
-    }
-}
+    
+    io.emit("updatedUserProfile", updatedUser);
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.log("Error in updateUserProfile controller", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};

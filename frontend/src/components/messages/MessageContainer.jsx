@@ -7,12 +7,16 @@ import useConversation from "../../zustand/useConversation";
 import { useEffect } from "react";
 import { useAuthContext } from "../../../context/AuthContext";
 
-const MessageContainer = () => {
+const MessageContainer = ({loading}) => {
   const { authUser } = useAuthContext();
-  const { selectedConversation, setSelectedConversation } = useConversation();
+  const { messages,selectedConversation, setSelectedConversation } = useConversation();
   useEffect(() => {
     return () => setSelectedConversation(null);
   }, [setSelectedConversation]);
+
+  // const selectedMessages 
+  const selectedMessages = messages[selectedConversation?._id];
+ 
   return (
     <div className="w-full  bg-cust_light flex-1 flex-shrink-0 min-w-96 flex flex-col">
       {!selectedConversation ? (
@@ -21,7 +25,7 @@ const MessageContainer = () => {
         <>
           {/* Header */}
           <MessageHead conversation={selectedConversation} />
-          <Messages />
+          <Messages loading={loading} messages={selectedMessages}  />
           <MessageInput />
         </>
       )}

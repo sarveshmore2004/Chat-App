@@ -24,6 +24,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
+    lastSeen: {
+        type: Date,
+        default: Date.now,
+    },
+    status: {
+        type: String,
+        default: "Hey there! I am using ChatApp.", // default status message
+    },
     //createdAt , updatedAt
 },{timestamps : true});
 

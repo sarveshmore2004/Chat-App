@@ -2,18 +2,27 @@ import { useEffect, useState } from "react";
 import useConversation from "../zustand/useConversation";
 import toast from "react-hot-toast";
 
-const useGetMessages = () => {
+const useGetMessages = (conversations) => {
   const [loading, setLoading] = useState(false);
-  const { messages, setMessages, selectedConversation } = useConversation();
-
+  const { messages, setMessages } = useConversation();
+  const [fetched , setFetched] = useState(false);
   useEffect(() => {
     const getMessages = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`/api/message/${selectedConversation._id}`);
-        const data = await res.json();
-        if (data.error) throw new Error(data.error);
-        setMessages(data);
+        const messagesData = {};
+        for (const conversation of conversations) {
+          const res = await fetch(`/api/message/${conversation._id}`);
+          const data = await res.json();
+          if (data.error) throw new Error(data.error);
+          messagesData[conversation._id] = data;
+        }
+        setMessages(messagesData,
+          ()=> console.log("these are messages", messages)
+        )
+         
+        console.log("getMessages ran");
+        console.log("these are data", messagesData);
       } catch (error) {
         toast.error(error.message);
       } finally {
@@ -21,9 +30,13 @@ const useGetMessages = () => {
       }
     };
 
-    if (selectedConversation?._id) getMessages();
-  }, [selectedConversation?._id, setMessages]);
+    if (!fetched && conversations && conversations.length > 0) {
+      getMessages();
+      setFetched(true);
+    }
+  }, [conversations, setMessages]);
 
   return { loading, messages };
 };
+
 export default useGetMessages;
