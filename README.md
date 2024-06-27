@@ -58,6 +58,12 @@ Frontend Setup
 cd frontend
 npm install
 ```
+
+- Navigate to frontend/context/SocketContext.js and modify the socket initialization server link to:
+```js
+const socket = io("http://localhost:5000", {
+```
+
 - Start the frontend development server.
 ```bash
 npm run dev
