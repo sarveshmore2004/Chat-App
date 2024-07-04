@@ -8,6 +8,7 @@ A real-time chat application built with React, Zustand, and Socket.io, featuring
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
+- [Screenshots](#screenshots)
 
 ## Project Overview
 
@@ -85,4 +86,22 @@ NODE_ENV=...
 ```bash
 npm start server
 ```
+
+## Hosted Server
+
+Link to hosted server: [https://chat-app-v0.onrender.com/](https://chat-app-v0.onrender.com/)
+
+## Screenshots
+
+**Home Page**
+![image](https://github.com/sarveshmore2004/Chat-App/assets/118593041/0cb9bb05-8188-48fb-b5cf-5ff5854351ef)
+
+**Edit Profile Page**
+![image](https://github.com/sarveshmore2004/Chat-App/assets/118593041/d060497d-8e12-4655-919f-10269f045939)
+
+**Sign In Page**
+![image](https://github.com/sarveshmore2004/Chat-App/assets/118593041/8c9c273d-e943-4d29-95fb-2edad888739f)
+
+**Sign Up Page**
+![image](https://github.com/sarveshmore2004/Chat-App/assets/118593041/eafbc04d-40b5-4492-b091-4bd9e8771357)
 
